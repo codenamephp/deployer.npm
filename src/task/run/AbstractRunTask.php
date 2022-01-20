@@ -28,6 +28,6 @@ abstract class AbstractRunTask extends AbstractNpmTask {
   }
 
   public function getArguments() : array {
-    return [$this->getNpmCommand(), $this->getScriptName(), ...parent::getArguments()];
+    return [$this->getScriptName(), ...parent::getArguments()];
   }
 }

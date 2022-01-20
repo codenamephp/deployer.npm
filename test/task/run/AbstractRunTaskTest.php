@@ -53,8 +53,7 @@ final class AbstractRunTaskTest extends TestCase {
   public function testGetArguments() : void {
     $arguments = $this->sut->getArguments();
 
-    self::assertContains($this->sut->getNpmCommand(), $arguments);
     self::assertContainsOnly('string', $arguments);
-    self::assertGreaterThan(3, count($arguments));
+    self::assertGreaterThan(2, count($arguments));
   }
 }
