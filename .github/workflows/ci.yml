@@ -17,4 +17,4 @@ on:
 
 jobs:
   ci:
-    uses: codenamephp/workflows.php/main/ci.yml@main
+    uses: codenamephp/workflows.php/.github/workflows/ci.yml@main
