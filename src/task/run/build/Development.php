@@ -27,4 +27,9 @@ final class Development extends AbstractRunTask {
   public function getScriptName() : string {
     return 'build:development';
   }
+
+  public function getArguments() : array {
+    return [];
+  }
+
 }

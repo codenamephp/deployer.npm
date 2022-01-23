@@ -23,6 +23,6 @@ namespace de\codenamephp\deployer\npm\task\install;
 final class Production extends AbstractInstallTask {
 
   public function getArguments() : array {
-    return [...parent::getArguments(), '--production'];
+    return ['--production'];
   }
 }

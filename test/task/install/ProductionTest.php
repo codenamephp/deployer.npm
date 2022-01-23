@@ -17,8 +17,8 @@
 
 namespace de\codenamephp\deployer\npm\test\task\install;
 
-use de\codenamephp\deployer\base\functions\iGet;
 use de\codenamephp\deployer\command\runner\iRunner;
+use de\codenamephp\deployer\npm\command\iNpmCommandFactory;
 use de\codenamephp\deployer\npm\task\install\Production;
 use PHPUnit\Framework\TestCase;
 
@@ -29,18 +29,13 @@ final class ProductionTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
+    $commandFactory = $this->createMock(iNpmCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
 
-    $this->sut = new Production($runner, $deployer);
+    $this->sut = new Production($commandFactory, $runner);
   }
 
   public function testGetArguments() : void {
-    $arguments = $this->sut->getArguments();
-
-    self::assertContains('--production', $arguments);
-    self::assertContainsOnly('string', $arguments);
-    self::assertGreaterThan(2, count($arguments));
+    self::assertEquals(['--production'], $this->sut->getArguments());
   }
 }

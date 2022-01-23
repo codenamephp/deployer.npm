@@ -17,8 +17,8 @@
 
 namespace de\codenamephp\deployer\npm\test\task\run\build;
 
-use de\codenamephp\deployer\base\functions\iGet;
 use de\codenamephp\deployer\command\runner\iRunner;
+use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 use de\codenamephp\deployer\npm\task\run\build\Development;
 use PHPUnit\Framework\TestCase;
 
@@ -29,11 +29,10 @@ final class DevelopmentTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
+    $commandFactory = $this->createMock(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
 
-    $this->sut = new Development($runner, $deployer);
+    $this->sut = new Development($commandFactory, $runner);
   }
 
   public function testGetScriptName() : void {

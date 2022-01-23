@@ -27,4 +27,9 @@ final class Production extends AbstractRunTask {
   public function getScriptName() : string {
     return 'build';
   }
+
+  public function getArguments() : array {
+    return [];
+  }
+
 }

@@ -17,10 +17,10 @@
 
 namespace de\codenamephp\deployer\npm\task\run;
 
-use de\codenamephp\deployer\base\functions\All;
-use de\codenamephp\deployer\base\functions\iGet;
 use de\codenamephp\deployer\command\runner\iRunner;
 use de\codenamephp\deployer\command\runner\WithDeployerFunctions;
+use de\codenamephp\deployer\npm\command\run\DecorateCommandFactory;
+use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 
 final class Generic extends AbstractRunTask {
 
@@ -33,14 +33,17 @@ final class Generic extends AbstractRunTask {
 
   /**
    * @param string $scriptName The name of the script to run, e.g. 'build'
-   * @param array<int,string> $arguments Additional arguments to pass to the script that will be appended to the defaults
-   * @param iRunner $runner The runner that runs the command
-   * @param iGet $deployer Deployer function to access the config. Will not be set in the instance
+   * @param array<int,string> $arguments Additional arguments to pass to the script
+   * @param iNpmRunCommandFactory $commandFactory The factory to build the command. Will be passed to parent.
+   * @param iRunner $runner The runner that runs the command. Will be passed to parent.
    */
-  public function __construct(string $scriptName, array $arguments = [], iRunner $runner = new WithDeployerFunctions(), iGet $deployer = new All()) {
+  public function __construct(string                $scriptName,
+                              array                 $arguments = [],
+                              iNpmRunCommandFactory $commandFactory = new DecorateCommandFactory(),
+                              iRunner               $runner = new WithDeployerFunctions()) {
+    parent::__construct($commandFactory, $runner);
     $this->scriptName = $scriptName;
     $this->arguments = $arguments;
-    parent::__construct($runner, $deployer);
   }
 
   public function getScriptName() : string {
@@ -48,6 +51,6 @@ final class Generic extends AbstractRunTask {
   }
 
   public function getArguments() : array {
-    return [...parent::getArguments(), ...$this->arguments];
+    return $this->arguments;
   }
 }

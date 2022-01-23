@@ -17,27 +17,18 @@
 
 namespace de\codenamephp\deployer\npm\task;
 
-use de\codenamephp\deployer\base\functions\All;
-use de\codenamephp\deployer\base\functions\iGet;
 use de\codenamephp\deployer\base\task\iTask;
-use de\codenamephp\deployer\command\Command;
-use de\codenamephp\deployer\command\iCommand;
 use de\codenamephp\deployer\command\runner\iRunner;
 use de\codenamephp\deployer\command\runner\WithDeployerFunctions;
+use de\codenamephp\deployer\npm\command\iNpmCommandFactory;
+use de\codenamephp\deployer\npm\command\WithBinaryFromDeployer;
 
 /**
  * Base class for npm command setting the binary to npm
  */
 abstract class AbstractNpmTask implements iTask {
 
-  public iCommand $command;
-
-  public function __construct(
-    public iRunner $runner = new WithDeployerFunctions(),
-    iGet           $deployer = new All()
-  ) {
-    $this->command = new Command((string) $deployer->get('npm:binary', 'npm'), [$this->getNpmCommand(), ...$this->getArguments()]);
-  }
+  public function __construct(public iNpmCommandFactory $commandFactory = new WithBinaryFromDeployer(), public iRunner $runner = new WithDeployerFunctions()) {}
 
   /**
    * Gets the command for npm, e.g. install or run-script
@@ -55,11 +46,9 @@ abstract class AbstractNpmTask implements iTask {
    *
    * @return array<int,string>
    */
-  public function getArguments() : array {
-    return ['--prefix {{release_path}}', '--fund=false'];
-  }
+  abstract public function getArguments() : array;
 
   public function __invoke() : void {
-    $this->runner->run($this->command);
+    $this->runner->run($this->commandFactory->build($this->getNpmCommand(), $this->getArguments()));
   }
 }

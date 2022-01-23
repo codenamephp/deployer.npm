@@ -17,8 +17,8 @@
 
 namespace de\codenamephp\deployer\npm\test\task\run;
 
-use de\codenamephp\deployer\base\functions\iGet;
 use de\codenamephp\deployer\command\runner\iRunner;
+use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 use de\codenamephp\deployer\npm\task\run\Generic;
 use PHPUnit\Framework\TestCase;
 
@@ -29,27 +29,25 @@ final class GenericTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
+    $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
 
-    $this->sut = new Generic('', [], $runner, $deployer);
+    $this->sut = new Generic('', [], $commandFactory, $runner);
   }
 
   public function test__construct() : void {
     $scriptName = 'some script';
+    $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
+    $arguments = ['some', 'arguments'];
 
-    $this->sut = new Generic($scriptName, ['some', 'arguments'], $runner, $deployer);
+    $this->sut = new Generic($scriptName, $arguments, $commandFactory, $runner);
 
     $arguments = $this->sut->getArguments();
 
     self::assertEquals($scriptName, $this->sut->getScriptName());
+    self::assertEquals($arguments, $this->sut->getArguments());
     self::assertSame($runner, $this->sut->runner);
-    self::assertContains('some', $arguments);
-    self::assertContains('arguments', $arguments);
-    self::assertGreaterThan(4, count($arguments));
+    self::assertSame($commandFactory, $this->sut->commandFactory);
   }
 }

@@ -17,8 +17,6 @@
 
 namespace de\codenamephp\deployer\npm\test\task\install;
 
-use de\codenamephp\deployer\base\functions\iGet;
-use de\codenamephp\deployer\command\runner\iRunner;
 use de\codenamephp\deployer\npm\task\install\AbstractInstallTask;
 use PHPUnit\Framework\TestCase;
 
@@ -29,11 +27,7 @@ final class AbstractInstallTaskTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
-    $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
-
-    $this->sut = $this->getMockForAbstractClass(AbstractInstallTask::class, [$runner, $deployer]);
+    $this->sut = $this->getMockForAbstractClass(AbstractInstallTask::class);
   }
 
   public function testGetNpmCommand() : void {

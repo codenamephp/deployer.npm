@@ -17,8 +17,9 @@
 
 namespace de\codenamephp\deployer\npm\test\task\run;
 
-use de\codenamephp\deployer\base\functions\iGet;
+use de\codenamephp\deployer\command\iCommand;
 use de\codenamephp\deployer\command\runner\iRunner;
+use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 use de\codenamephp\deployer\npm\task\run\AbstractRunTask;
 use PHPUnit\Framework\TestCase;
 
@@ -29,31 +30,34 @@ final class AbstractRunTaskTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
+    $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
 
-    $this->sut = $this->getMockForAbstractClass(AbstractRunTask::class, [$runner, $deployer]);
+    $this->sut = $this->getMockForAbstractClass(AbstractRunTask::class, [$commandFactory, $runner]);
   }
 
   public function test__construct() : void {
+    $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
-    $deployer = $this->createMock(iGet::class);
-    $deployer->method('get')->with('npm:binary', 'npm')->willReturn('npm');
 
-    $this->sut = $this->getMockForAbstractClass(AbstractRunTask::class, [$runner, $deployer]);
+    $this->sut = $this->getMockForAbstractClass(AbstractRunTask::class, [$commandFactory, $runner]);
 
+    self::assertSame($commandFactory, $this->sut->commandFactory);
     self::assertSame($runner, $this->sut->runner);
   }
 
-  public function testGetNpmCommand() : void {
-    self::assertEquals('run', $this->sut->getNpmCommand());
-  }
+  public function test__invoke() : void {
+    $this->sut->expects(self::once())->method('getArguments')->willReturn(['arg1', 'arg2']);
+    $this->sut->expects(self::once())->method('getScriptName')->willReturn('some script');
 
-  public function testGetArguments() : void {
-    $arguments = $this->sut->getArguments();
+    $command = $this->createMock(iCommand::class);
 
-    self::assertContainsOnly('string', $arguments);
-    self::assertGreaterThan(2, count($arguments));
+    $this->sut->commandFactory = $this->createMock(iNpmRunCommandFactory::class);
+    $this->sut->commandFactory->expects(self::once())->method('build')->with('some script', ['arg1', 'arg2'])->willReturn($command);
+
+    $this->sut->runner = $this->createMock(iRunner::class);
+    $this->sut->runner->expects(self::once())->method('run')->with($command);
+
+    $this->sut->__invoke();
   }
 }

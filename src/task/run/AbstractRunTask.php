@@ -17,17 +17,28 @@
 
 namespace de\codenamephp\deployer\npm\task\run;
 
-use de\codenamephp\deployer\npm\task\AbstractNpmTask;
+use de\codenamephp\deployer\base\task\iTask;
+use de\codenamephp\deployer\command\runner\iRunner;
+use de\codenamephp\deployer\command\runner\WithDeployerFunctions;
+use de\codenamephp\deployer\npm\command\run\DecorateCommandFactory;
+use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 
-abstract class AbstractRunTask extends AbstractNpmTask {
+abstract class AbstractRunTask implements iTask {
+
+  public function __construct(public iNpmRunCommandFactory $commandFactory = new DecorateCommandFactory(), public iRunner $runner = new WithDeployerFunctions()) {}
 
   abstract public function getScriptName() : string;
 
-  public function getNpmCommand() : string {
-    return 'run';
-  }
+  /**
+   * Gets the arguments to pass to the command. Override this and add you commands and options as needed.
+   *
+   * The array has to be numerical so it can be expanded in the constructor
+   *
+   * @return array<int,string>
+   */
+  abstract public function getArguments() : array;
 
-  public function getArguments() : array {
-    return [$this->getScriptName(), ...parent::getArguments()];
+  public function __invoke() : void {
+    $this->runner->run($this->commandFactory->build($this->getScriptName(), $this->getArguments()));
   }
 }
