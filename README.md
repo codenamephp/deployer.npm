@@ -18,3 +18,5 @@ Easiest way is via composer. Just run `composer require codenamephp/deployer.npm
 
 ## Usage
 
+Just use the tasks in your deployer file or create your own using the command factory or by extending the `\de\codenamephp\deployer\npm\task\AbstractNpmTask`
+class.
