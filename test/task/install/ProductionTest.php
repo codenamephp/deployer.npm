@@ -38,4 +38,12 @@ final class ProductionTest extends TestCase {
   public function testGetArguments() : void {
     self::assertEquals(['--production'], $this->sut->getArguments());
   }
+
+  public function testGetName() : void {
+    self::assertEquals(Production::NAME, $this->sut->getName());
+  }
+
+  public function testGEtDescription() : void {
+    self::assertEquals('Runs npm install with the production flag to dev dependencies are not installed.', $this->sut->getDescription());
+  }
 }

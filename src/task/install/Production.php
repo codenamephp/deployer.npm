@@ -22,7 +22,17 @@ namespace de\codenamephp\deployer\npm\task\install;
  */
 final class Production extends AbstractInstallTask {
 
+  public const NAME = 'npm:install';
+
   public function getArguments() : array {
     return ['--production'];
+  }
+
+  public function getDescription() : string {
+    return 'Runs npm install with the production flag to dev dependencies are not installed.';
+  }
+
+  public function getName() : string {
+    return self::NAME;
   }
 }
