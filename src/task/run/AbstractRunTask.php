@@ -17,15 +17,16 @@
 
 namespace de\codenamephp\deployer\npm\task\run;
 
-use de\codenamephp\deployer\base\task\iTask;
+use de\codenamephp\deployer\base\task\iTaskWithDescription;
+use de\codenamephp\deployer\base\task\iTaskWithName;
 use de\codenamephp\deployer\command\runner\iRunner;
 use de\codenamephp\deployer\command\runner\WithDeployerFunctions;
 use de\codenamephp\deployer\npm\command\run\DecorateCommandFactory;
 use de\codenamephp\deployer\npm\command\run\iNpmRunCommandFactory;
 
-abstract class AbstractRunTask implements iTask {
+abstract class AbstractRunTask implements iTaskWithName, iTaskWithDescription {
 
-  public function __construct(public iNpmRunCommandFactory $commandFactory = new DecorateCommandFactory(), public iRunner $runner = new WithDeployerFunctions()) {}
+  public function __construct(public iNpmRunCommandFactory $commandFactory = new DecorateCommandFactory(), public iRunner $runner = new WithDeployerFunctions()) { }
 
   abstract public function getScriptName() : string;
 

@@ -24,6 +24,8 @@ use de\codenamephp\deployer\npm\task\run\AbstractRunTask;
  */
 final class Development extends AbstractRunTask {
 
+  public const NAME = 'npm:build:development';
+
   public function getScriptName() : string {
     return 'build:development';
   }
@@ -32,4 +34,11 @@ final class Development extends AbstractRunTask {
     return [];
   }
 
+  public function getDescription() : string {
+    return 'Runs the npm build script that builds the assets for development (without minifying, compression, ...).';
+  }
+
+  public function getName() : string {
+    return self::NAME;
+  }
 }

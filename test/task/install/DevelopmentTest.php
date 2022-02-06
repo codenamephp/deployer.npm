@@ -38,4 +38,12 @@ final class DevelopmentTest extends TestCase {
   public function testGetArguments() : void {
     self::assertEquals(['--production=false'], $this->sut->getArguments());
   }
+
+  public function testGetName() : void {
+    self::assertEquals(Development::NAME, $this->sut->getName());
+  }
+
+  public function testGEtDescription() : void {
+    self::assertEquals('Runs npm install with the --production=false flag so development dependencies will be installed.', $this->sut->getDescription());
+  }
 }

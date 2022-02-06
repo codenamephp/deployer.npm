@@ -38,4 +38,12 @@ final class ProductionTest extends TestCase {
   public function testGetScriptName() : void {
     self::assertEquals('build', $this->sut->getScriptName());
   }
+
+  public function testGetName() : void {
+    self::assertEquals(Production::NAME, $this->sut->getName());
+  }
+
+  public function testGetDescription() : void {
+    self::assertEquals('Runs the npm build script that builds the assets for production (with minifying, compression, ...).', $this->sut->getDescription());
+  }
 }

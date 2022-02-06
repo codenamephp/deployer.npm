@@ -22,7 +22,17 @@ namespace de\codenamephp\deployer\npm\task\install;
  */
 final class Development extends AbstractInstallTask {
 
+  public const NAME = 'npm:install:development';
+
   public function getArguments() : array {
     return ['--production=false'];
+  }
+
+  public function getDescription() : string {
+    return 'Runs npm install with the --production=false flag so development dependencies will be installed.';
+  }
+
+  public function getName() : string {
+    return self::NAME;
   }
 }

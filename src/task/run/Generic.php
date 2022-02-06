@@ -38,7 +38,9 @@ final class Generic extends AbstractRunTask {
    * @param iRunner $runner The runner that runs the command. Will be passed to parent.
    */
   public function __construct(string                $scriptName,
+                              public string         $taskName,
                               array                 $arguments = [],
+                              public string         $taskDescription = '',
                               iNpmRunCommandFactory $commandFactory = new DecorateCommandFactory(),
                               iRunner               $runner = new WithDeployerFunctions()) {
     parent::__construct($commandFactory, $runner);
@@ -52,5 +54,13 @@ final class Generic extends AbstractRunTask {
 
   public function getArguments() : array {
     return $this->arguments;
+  }
+
+  public function getDescription() : string {
+    return $this->taskDescription;
+  }
+
+  public function getName() : string {
+    return $this->taskName;
   }
 }

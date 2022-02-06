@@ -17,7 +17,8 @@
 
 namespace de\codenamephp\deployer\npm\task;
 
-use de\codenamephp\deployer\base\task\iTask;
+use de\codenamephp\deployer\base\task\iTaskWithDescription;
+use de\codenamephp\deployer\base\task\iTaskWithName;
 use de\codenamephp\deployer\command\runner\iRunner;
 use de\codenamephp\deployer\command\runner\WithDeployerFunctions;
 use de\codenamephp\deployer\npm\command\iNpmCommandFactory;
@@ -26,9 +27,9 @@ use de\codenamephp\deployer\npm\command\WithBinaryFromDeployer;
 /**
  * Base class for npm command setting the binary to npm
  */
-abstract class AbstractNpmTask implements iTask {
+abstract class AbstractNpmTask implements iTaskWithName, iTaskWithDescription {
 
-  public function __construct(public iNpmCommandFactory $commandFactory = new WithBinaryFromDeployer(), public iRunner $runner = new WithDeployerFunctions()) {}
+  public function __construct(public iNpmCommandFactory $commandFactory = new WithBinaryFromDeployer(), public iRunner $runner = new WithDeployerFunctions()) { }
 
   /**
    * Gets the command for npm, e.g. install or run-script

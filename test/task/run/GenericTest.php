@@ -32,16 +32,18 @@ final class GenericTest extends TestCase {
     $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
 
-    $this->sut = new Generic('', [], $commandFactory, $runner);
+    $this->sut = new Generic('', '', [], '', $commandFactory, $runner);
   }
 
   public function test__construct() : void {
     $scriptName = 'some script';
+    $taskName = 'some task';
     $commandFactory = $this->getMockForAbstractClass(iNpmRunCommandFactory::class);
     $runner = $this->createMock(iRunner::class);
     $arguments = ['some', 'arguments'];
+    $taskDescription = 'some task description';
 
-    $this->sut = new Generic($scriptName, $arguments, $commandFactory, $runner);
+    $this->sut = new Generic($scriptName, $taskName, $arguments, $taskDescription, $commandFactory, $runner);
 
     $arguments = $this->sut->getArguments();
 
@@ -49,5 +51,7 @@ final class GenericTest extends TestCase {
     self::assertEquals($arguments, $this->sut->getArguments());
     self::assertSame($runner, $this->sut->runner);
     self::assertSame($commandFactory, $this->sut->commandFactory);
+    self::assertSame($taskName, $this->sut->getName());
+    self::assertSame('some task description', $this->sut->getDescription());
   }
 }

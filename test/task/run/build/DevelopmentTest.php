@@ -38,4 +38,12 @@ final class DevelopmentTest extends TestCase {
   public function testGetScriptName() : void {
     self::assertEquals('build:development', $this->sut->getScriptName());
   }
+
+  public function testGetName() : void {
+    self::assertEquals(Development::NAME, $this->sut->getName());
+  }
+
+  public function testGetDescription() : void {
+    self::assertEquals('Runs the npm build script that builds the assets for development (without minifying, compression, ...).', $this->sut->getDescription());
+  }
 }
