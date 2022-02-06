@@ -32,6 +32,6 @@ final class WithBinaryFromDeployer implements iNpmCommandFactory {
   public function __construct(public iGet $deployer = new All()) {}
 
   public function build(string $command, array $arguments = [], array $envVars = [], bool $sudo = false, iRunConfiguration $runConfiguration = null) : iCommand {
-    return new Command((string) $this->deployer->get('npm:binary', 'npm'), ['--prefix {{release_path}}', '--fund=false', $command, ...$arguments], $envVars, $sudo, $runConfiguration ?? new SimpleContainer());
+    return new Command((string) $this->deployer->get('npm:binary', 'npm'), ['--prefix {{release_or_current_path}}', '--fund=false', $command, ...$arguments], $envVars, $sudo, $runConfiguration ?? new SimpleContainer());
   }
 }
