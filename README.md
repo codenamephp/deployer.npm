@@ -13,3 +13,4 @@
 Easiest way is via composer. Just run `composer require codenamephp/deployer.npm` in your cli which should install the latest version for you.
 
 ## Usage
+
