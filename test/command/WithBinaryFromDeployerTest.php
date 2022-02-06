@@ -61,7 +61,7 @@ final class WithBinaryFromDeployerTest extends TestCase {
 
     self::assertInstanceOf(Command::class, $command);
     self::assertEquals('123', $command->binary);
-    self::assertEquals(['--prefix {{release_path}}', '--fund=false', 'some command', 'arg1', 'arg2'], $command->arguments);
+    self::assertEquals(['--prefix {{release_or_current_path}}', '--fund=false', 'some command', 'arg1', 'arg2'], $command->arguments);
     self::assertEquals(['some' => 'env'], $command->envVars);
     self::assertTrue($command->sudo);
     self::assertSame($runConfiguration, $command->runConfiguration);
@@ -75,7 +75,7 @@ final class WithBinaryFromDeployerTest extends TestCase {
 
     self::assertInstanceOf(Command::class, $command);
     self::assertEquals('', $command->binary);
-    self::assertEquals(['--prefix {{release_path}}', '--fund=false', ''], $command->arguments);
+    self::assertEquals(['--prefix {{release_or_current_path}}', '--fund=false', ''], $command->arguments);
     self::assertEquals([], $command->envVars);
     self::assertFalse($command->sudo);
     self::assertInstanceOf(SimpleContainer::class, $command->runConfiguration);

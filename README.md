@@ -8,6 +8,10 @@
 ![Packagist Downloads](https://img.shields.io/packagist/dt/codenamephp/deployer.npm)
 ![GitHub](https://img.shields.io/github/license/codenamephp/deployer.npm)
 
+## What is it?
+
+This package provides deployer tasks for npm and a basic command to run npm command line.
+
 ## Installation
 
 Easiest way is via composer. Just run `composer require codenamephp/deployer.npm` in your cli which should install the latest version for you.
