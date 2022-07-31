@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/codenamephp/deployer.npm/tree/2.0.1) (2022-07-31)
+
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.0...2.0.1)
+
+**Merged pull requests:**
+
+- Update codenamephp/deployer.base requirement from ^1.0 to ^1.0 || ^2.0 [\#4](https://github.com/codenamephp/deployer.npm/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [2.0.0](https://github.com/codenamephp/deployer.npm/tree/2.0.0) (2022-02-06)
 
 [Full Changelog](https://github.com/codenamephp/deployer.npm/compare/1.0.0...2.0.0)
