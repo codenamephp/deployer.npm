@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2](https://github.com/codenamephp/deployer.npm/tree/2.0.2) (2022-12-15)
+
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.1...2.0.2)
+
+**Merged pull requests:**
+
+- Bump webdevops/php-dev from 8.1 to 8.2 in /docker/application [\#6](https://github.com/codenamephp/deployer.npm/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [2.0.1](https://github.com/codenamephp/deployer.npm/tree/2.0.1) (2022-07-31)
 
 [Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.0...2.0.1)
