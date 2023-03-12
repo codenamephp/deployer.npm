@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- PHPUnit10 [\#8](https://github.com/codenamephp/deployer.npm/pull/8) ([bastianschwarz](https://github.com/bastianschwarz))
 - Workflow Versions [\#7](https://github.com/codenamephp/deployer.npm/pull/7) ([bastianschwarz](https://github.com/bastianschwarz))
 - Bump webdevops/php-dev from 8.1 to 8.2 in /docker/application [\#6](https://github.com/codenamephp/deployer.npm/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
 
