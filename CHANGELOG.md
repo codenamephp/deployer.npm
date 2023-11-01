@@ -1,8 +1,8 @@
 # Changelog
 
-## [2.0.3](https://github.com/codenamephp/deployer.npm/tree/2.0.3) (2023-11-01)
+## [2.1.0](https://github.com/codenamephp/deployer.npm/tree/2.1.0) (2023-11-01)
 
-[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.2...2.0.3)
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.2...2.1.0)
 
 **Implemented enhancements:**
 
