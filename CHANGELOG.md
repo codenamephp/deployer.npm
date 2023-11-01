@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/codenamephp/deployer.npm/tree/2.0.3) (2023-11-01)
+
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.2...2.0.3)
+
+**Implemented enhancements:**
+
+- Added CI install task [\#10](https://github.com/codenamephp/deployer.npm/pull/10) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [2.0.2](https://github.com/codenamephp/deployer.npm/tree/2.0.2) (2023-03-12)
 
 [Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.0.1...2.0.2)
