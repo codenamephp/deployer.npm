@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0](https://github.com/codenamephp/deployer.npm/tree/3.0.0) (2024-01-14)
+
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.2.0...3.0.0)
+
+**Merged pull requests:**
+
+- PHPUnit 8.2 [\#12](https://github.com/codenamephp/deployer.npm/pull/12) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [2.2.0](https://github.com/codenamephp/deployer.npm/tree/2.2.0) (2024-01-14)
 
 [Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.1.0...2.2.0)
