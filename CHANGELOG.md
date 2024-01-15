@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/codenamephp/deployer.npm/tree/3.0.1) (2024-01-15)
+
+[Full Changelog](https://github.com/codenamephp/deployer.npm/compare/3.0.0...3.0.1)
+
+**Merged pull requests:**
+
+- Update codenamephp/deployer.command requirement from ^1.0 to ^1.0 || ^2.0 [\#13](https://github.com/codenamephp/deployer.npm/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [3.0.0](https://github.com/codenamephp/deployer.npm/tree/3.0.0) (2024-01-14)
 
 [Full Changelog](https://github.com/codenamephp/deployer.npm/compare/2.2.0...3.0.0)
